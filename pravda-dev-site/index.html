@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PRAVDA SEMPAI | Разработчик-универсал</title>
+    <meta name="description" content="Портфолио PRAVDA SEMPAI: веб-разработка, мобильные приложения, игры, автоматизация. Качественные и модульные решения.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">PRAVDA<span>SEMPAI</span></a>
+            <div class="nav-links">
+                <a href="#projects">Проекты</a>
+                <a href="#about">Обо мне</a>
+                <a href="#tech-stack">Стек</a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">Разработчик-универсал</span>
+                <h1>Создаю <span class="pravda-text">качественные</span> и <span class="sempai-text">модульные</span> решения</h1>
+                <p>Fullstack-разработчик, тестировщик-автоматизатор и создатель игр. Превращаю сложные идеи в элегантный, работающий код.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">Смотреть проекты <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/XpravdaX" target="_blank" class="btn-secondary">GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-icon"><i class="fas fa-code"></i></div>
+                <div class="tech-icons">
+                    <i class="fab fa-python"></i>
+                    <i class="fab fa-android"></i>
+                    <i class="fab fa-js"></i>
+                    <i class="fas fa-database"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Мои <span class="pravda-text">проекты</span></h2>
+                    <p>Реальные работы, демонстрирующие мой стек и подход к разработке</p>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Все</button>
+                        <button class="filter-btn" data-filter="web">Веб-разработка</button>
+                        <button class="filter-btn" data-filter="mobile">Мобильные</button>
+                        <button class="filter-btn" data-filter="game">Игры</button>
+                        <button class="filter-btn" data-filter="other">Другое</button>
+                    </div>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> Загрузка проектов...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Обо <span class="pravda-text">мне</span></h2>
+                        <p>Привет! Я PRAVDA SEMPAI — разработчик, который не боится выходить за рамки одного стека. Моя страсть — создавать <strong>модульные, тестируемые и хорошо документированные</strong> системы.</p>
+                        <p>Мой путь начинался с игр на Godot, а сейчас я свободно перемещаюсь между мобильной разработкой (Kotlin), бэкендом (FastAPI), десктопными приложениями (Python/CustomTkinter) и автоматизацией тестирования. Каждый проект я рассматриваю как возможность изучить что-то новое и применить лучшие практики.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">8+</span>
+                                <span class="stat-label">публичных проектов</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">технологических стеков</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">кода с душой</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://avatars.githubusercontent.com/u/74926737?s=400&u=26492810639f4f34e6f7bd649b4e834f3bb442cc&v=4" alt="PRAVDA SEMPAI" onerror="this.src='https://via.placeholder.com/400x400?text=PS'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="tech-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Технологический <span class="sempai-text">стек</span></h2>
+                    <p>Инструменты и технологии, которые я использую на ежедневной основе</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h3><i class="fas fa-globe"></i> Веб и Бэкенд</h3>
+                        <ul><li>Python / FastAPI</li><li>JavaScript (Vanilla)</li><li>HTML5 / CSS3 / Flex/Grid</li><li>SQLite / PostgreSQL</li><li>REST API / JSON</li></ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3><i class="fab fa-android"></i> Мобильная разработка</h3>
+                        <ul><li>Kotlin</li><li>Android Jetpack (ViewModel, LiveData, Room)</li><li>Coroutines</li><li>Material Design</li></ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3><i class="fas fa-gamepad"></i> Игры и Инструменты</h3>
+                        <ul><li>Godot Engine (GDScript)</li><li>CustomTkinter (Python GUI)</li><li>OpenGL / Shaders (базово)</li></ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3><i class="fas fa-vial"></i> Тестирование и DevOps</h3>
+                        <ul><li>Pytest / Unittest</li><li>Locust (нагрузочное)</li><li>Selenium (Web-автоматизация)</li><li>Git / GitHub Actions</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 PRAVDA SEMPAI. Все права защищены</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
