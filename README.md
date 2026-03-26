@@ -5,5 +5,4 @@
 
 Современный сайт-визитка, демонстрирующий мои навыки
 
-![Превью сайта](https://via.placeholder.com/1200x630?text=PRAVDA+SEMPAI+Portfolio)
-
+[Сам сайтик](https://xpravdax.github.io/pravda-sempai-portfolio/pravda-dev-site/index.html)
