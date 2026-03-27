@@ -42,6 +42,18 @@ body {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
     z-index: 100;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .nav-container {
@@ -55,6 +67,11 @@ body {
     font-weight: 700;
     text-decoration: none;
     color: var(--pravda);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .logo span {
@@ -70,7 +87,23 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-pravda);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover {
@@ -81,6 +114,11 @@ body {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: rotate(90deg);
 }
 
 /* Hero */
@@ -88,6 +126,26 @@ body {
     padding: 6rem 0 4rem;
     position: relative;
     overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(252, 0, 1, 0.05), transparent 50%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .hero-content {
@@ -99,6 +157,18 @@ body {
 
 .hero-text {
     flex: 1;
+    animation: fadeInLeft 0.8s ease;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .hero-badge {
@@ -110,6 +180,16 @@ body {
     font-weight: 500;
     color: var(--pravda);
     margin-bottom: 1rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(252, 0, 1, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(252, 0, 1, 0.6);
+    }
 }
 
 .hero-text h1 {
@@ -121,10 +201,25 @@ body {
 
 .pravda-text {
     color: var(--pravda);
+    display: inline-block;
+    animation: textPop 0.5s ease;
 }
 
 .sempai-text {
     color: var(--sempai);
+    display: inline-block;
+    animation: textPop 0.5s ease 0.2s backwards;
+}
+
+@keyframes textPop {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .hero-text p {
@@ -147,7 +242,27 @@ body {
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
@@ -170,6 +285,7 @@ body {
 .btn-secondary:hover {
     border-color: var(--sempai);
     color: var(--sempai);
+    transform: translateY(-2px);
 }
 
 .hero-visual {
@@ -178,6 +294,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeInRight 0.8s ease;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .code-icon {
@@ -192,18 +320,50 @@ body {
     font-size: 2.5rem;
     color: var(--text-secondary);
     z-index: 2;
-    animation: float 3s ease-in-out infinite;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+.tech-icons i {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.tech-icons i:hover {
+    transform: scale(1.2) translateY(-5px);
+    color: var(--pravda);
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-15px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-8px);
+    }
 }
 
 /* Section headers */
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section-header h2 {
@@ -237,13 +397,31 @@ body {
     font-weight: 500;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-pravda);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    left: 0;
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background: var(--gradient-pravda);
-    border-color: transparent;
     color: white;
+    border-color: transparent;
 }
 
 .projects-grid {
@@ -258,12 +436,34 @@ body {
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
     backdrop-filter: blur(4px);
+    animation: fadeInScale 0.5s ease backwards;
+    animation-delay: calc(var(--card-index, 0) * 0.05s);
+}
+
+.project-card:nth-child(1) { --card-index: 1; }
+.project-card:nth-child(2) { --card-index: 2; }
+.project-card:nth-child(3) { --card-index: 3; }
+.project-card:nth-child(4) { --card-index: 4; }
+.project-card:nth-child(5) { --card-index: 5; }
+.project-card:nth-child(6) { --card-index: 6; }
+.project-card:nth-child(7) { --card-index: 7; }
+.project-card:nth-child(8) { --card-index: 8; }
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     border-color: var(--pravda);
 }
@@ -272,11 +472,21 @@ body {
     font-size: 2.2rem;
     color: var(--pravda);
     margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .project-card h3 {
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover h3 {
+    color: var(--pravda);
 }
 
 .project-description {
@@ -300,6 +510,12 @@ body {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-tech span {
+    background: rgba(252, 0, 1, 0.2);
+    color: var(--pravda);
 }
 
 .project-link {
@@ -311,10 +527,12 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    transition: gap 0.3s ease;
 }
 
 .project-link:hover {
     color: var(--sempai);
+    gap: 0.8rem;
 }
 
 .loading-spinner {
@@ -327,16 +545,41 @@ body {
 .about-section {
     padding: 5rem 0;
     background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(17,20,28,0.5) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(1, 242, 254, 0.03), transparent 70%);
+    animation: rotateBg 20s linear infinite;
+}
+
+@keyframes rotateBg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .about-content {
     display: flex;
     gap: 4rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .about-text {
     flex: 1;
+    animation: fadeInLeft 0.8s ease;
 }
 
 .about-text h2 {
@@ -357,13 +600,23 @@ body {
 
 .stat {
     text-align: center;
+    animation: fadeInUp 0.5s ease backwards;
 }
+
+.stat:nth-child(1) { animation-delay: 0.1s; }
+.stat:nth-child(2) { animation-delay: 0.2s; }
+.stat:nth-child(3) { animation-delay: 0.3s; }
 
 .stat-number {
     display: block;
     font-size: 2rem;
     font-weight: 700;
     color: var(--pravda);
+    transition: transform 0.3s ease;
+}
+
+.stat:hover .stat-number {
+    transform: scale(1.1);
 }
 
 .stat-label {
@@ -374,6 +627,7 @@ body {
 .about-image {
     flex: 1;
     text-align: center;
+    animation: fadeInRight 0.8s ease;
 }
 
 .about-image img {
@@ -383,6 +637,13 @@ body {
     border: 3px solid var(--pravda);
     box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
     border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.02) rotate(1deg);
+    box-shadow: 0 25px 40px -10px rgba(252, 0, 1, 0.3);
+    border-color: var(--sempai);
 }
 
 /* Tech Stack */
@@ -401,6 +662,19 @@ body {
     padding: 1.8rem;
     border-radius: 20px;
     border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    animation: fadeInScale 0.5s ease backwards;
+}
+
+.tech-category:nth-child(1) { animation-delay: 0.05s; }
+.tech-category:nth-child(2) { animation-delay: 0.1s; }
+.tech-category:nth-child(3) { animation-delay: 0.15s; }
+.tech-category:nth-child(4) { animation-delay: 0.2s; }
+
+.tech-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--sempai);
+    box-shadow: 0 10px 25px rgba(1, 242, 254, 0.1);
 }
 
 .tech-category h3 {
@@ -409,6 +683,11 @@ body {
     gap: 0.5rem;
     margin-bottom: 1rem;
     color: var(--sempai);
+    transition: transform 0.3s ease;
+}
+
+.tech-category:hover h3 {
+    transform: translateX(5px);
 }
 
 .tech-category ul {
@@ -420,6 +699,12 @@ body {
     color: var(--text-secondary);
     padding-left: 1.2rem;
     position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-category li:hover {
+    transform: translateX(5px);
+    color: var(--pravda);
 }
 
 .tech-category li::before {
@@ -427,6 +712,11 @@ body {
     position: absolute;
     left: 0;
     color: var(--pravda);
+    transition: transform 0.3s ease;
+}
+
+.tech-category li:hover::before {
+    transform: translateX(3px);
 }
 
 /* Footer */
