@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>PRAVDA_SEMPAI | Разработчик-универсал</title>
-    <meta name="description" content="Портфолио PRAVDA_SEMPAI: веб-разработка, мобильные приложения, игры, автоматизация. Качественные и модульные решения.">
+    <title>PRAVDA_SEMPAI | Создаю работающие системы</title>
+    <meta name="description" content="Портфолио разработчика PRAVDA_SEMPAI. Веб-приложения, мобильные приложения, игры, автоматизация тестирования.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="bg-glow"></div>
+    <div class="noise-overlay"></div>
+
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">PRAVDA_<span>SEMPAI</span></a>
+            <a href="#" class="logo">
+                <img src="https://avatars.githubusercontent.com/u/74926737?s=40&v=4" alt="avatar" class="logo-avatar">
+                <span>
+                    <span class="logo-pravda">PRAVDA_</span><span class="logo-sempai">SEMPAI</span>
+                </span>
+            </a>
             <div class="nav-links">
-                <a href="#projects">Проекты</a>
+                <a href="#works">Работы</a>
+                <a href="#stack">Стек</a>
                 <a href="#about">Обо мне</a>
-                <a href="#tech-stack">Стек</a>
             </div>
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
@@ -29,111 +37,208 @@
     <header class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <span class="hero-badge">Разработчик-универсал</span>
-                <h1>Создаю <span class="pravda-text">качественные</span> и <span class="sempai-text">модульные</span> решения</h1>
-                <p>Fullstack-разработчик, тестировщик-автоматизатор и создатель игр. Превращаю сложные идеи в элегантный, работающий код.</p>
+                <div class="hero-tag">
+                    <span class="tag-dot"></span>
+                    <span>доступен для сотрудничества</span>
+                </div>
+                <h1>
+                    <span>Создаю</span>
+                    <span class="accent-block">работающие системы</span>
+                    <span>которые решают задачи</span>
+                </h1>
+                <p>Разрабатываю веб-приложения, мобильные приложения, игры и автоматизирую процессы. Код это инструмент, а результат главное.</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn-primary">Смотреть проекты <i class="fas fa-arrow-right"></i></a>
-                    <a href="https://github.com/XpravdaX" target="_blank" class="btn-secondary">GitHub <i class="fab fa-github"></i></a>
+                    <a href="#works" class="btn-primary">
+                        <span>Смотреть проекты</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="https://github.com/XpravdaX" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="12+">0</span>
+                        <span class="stat-label">завершенных проектов</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="8">0</span>
+                        <span class="stat-label">технологий в работе</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-label">года в разработке</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="code-icon"><i class="fas fa-code"></i></div>
-                <div class="tech-icons">
-                    <i class="fab fa-python" style="animation-delay: 0s"></i>
-                    <i class="fab fa-android" style="animation-delay: 0.2s"></i>
-                    <i class="fab fa-js" style="animation-delay: 0.4s"></i>
-                    <i class="fas fa-database" style="animation-delay: 0.6s"></i>
+                <div class="code-window">
+                    <div class="window-header">
+                        <span class="window-dot red"></span>
+                        <span class="window-dot yellow"></span>
+                        <span class="window-dot green"></span>
+                        <span class="window-title">main.py</span>
+                    </div>
+                    <div class="window-content">
+                        <pre><code><span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> FastAPI
+<span class="code-keyword">from</span> typing <span class="code-keyword">import</span> Optional
+
+app = FastAPI()
+
+<span class="code-keyword">class</span> <span class="code-function">Project</span>:
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self, name: <span class="code-string">str</span>, tech: <span class="code-string">list</span>):
+        self.name = name
+        self.tech = tech
+
+@app.<span class="code-keyword">get</span>(<span class="code-string">"/api/projects"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">get_projects</span>():
+    <span class="code-keyword">return</span> [<span class="code-string">"Pizza Shop"</span>, <span class="code-string">"CRM"</span>, <span class="code-string">"Clicker"</span>]</code></pre>
+                    </div>
+                </div>
+                <div class="floating-icons">
+                    <i class="fab fa-python"></i>
+                    <i class="fab fa-android"></i>
+                    <i class="fab fa-js"></i>
+                    <i class="fas fa-gamepad"></i>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section id="projects" class="projects-section">
+        <section id="works" class="works-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Мои <span class="pravda-text">проекты</span></h2>
-                    <p>Реальные работы, демонстрирующие мой стек и подход к разработке</p>
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">Все</button>
-                        <button class="filter-btn" data-filter="web">Веб-разработка</button>
-                        <button class="filter-btn" data-filter="mobile">Мобильные</button>
-                        <button class="filter-btn" data-filter="game">Игры</button>
-                        <button class="filter-btn" data-filter="other">Другое</button>
+                    <span class="section-badge">Портфолио</span>
+                    <h2>Реализованные <span class="pravda-text">проекты</span></h2>
+                    <p>Каждый проект это решенная задача и довольный заказчик</p>
+                </div>
+                <div class="works-filters">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="web">Веб-разработка</button>
+                    <button class="filter-btn" data-filter="mobile">Мобильные приложения</button>
+                    <button class="filter-btn" data-filter="game">Игры</button>
+                    <button class="filter-btn" data-filter="other">Инструменты</button>
+                </div>
+                <div class="works-grid" id="works-grid">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Загрузка проектов...</p>
                     </div>
                 </div>
-                <div class="projects-grid" id="projects-grid">
-                    <div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> Загрузка проектов...</div>
+            </div>
+        </section>
+
+        <section id="stack" class="stack-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Технологии</span>
+                    <h2>Мой <span class="sempai-text">инструментарий</span></h2>
+                    <p>То, с чем работаю каждый день</p>
+                </div>
+                <div class="stack-grid">
+                    <div class="stack-card">
+                        <div class="stack-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Backend & Web</h3>
+                        <div class="stack-list">
+                            <span>Python / FastAPI</span>
+                            <span>JavaScript</span>
+                            <span>HTML5 / CSS3</span>
+                            <span>SQLite / PostgreSQL</span>
+                            <span>REST API</span>
+                        </div>
+                    </div>
+                    <div class="stack-card">
+                        <div class="stack-icon"><i class="fab fa-android"></i></div>
+                        <h3>Mobile</h3>
+                        <div class="stack-list">
+                            <span>Kotlin</span>
+                            <span>Android SDK</span>
+                            <span>Jetpack (ViewModel, Room)</span>
+                            <span>Coroutines</span>
+                            <span>Material Design</span>
+                        </div>
+                    </div>
+                    <div class="stack-card">
+                        <div class="stack-icon"><i class="fas fa-gamepad"></i></div>
+                        <h3>Games & Tools</h3>
+                        <div class="stack-list">
+                            <span>Godot Engine</span>
+                            <span>GDScript</span>
+                            <span>CustomTkinter</span>
+                            <span>PyQt</span>
+                        </div>
+                    </div>
+                    <div class="stack-card">
+                        <div class="stack-icon"><i class="fas fa-vial"></i></div>
+                        <h3>Testing & DevOps</h3>
+                        <div class="stack-list">
+                            <span>Pytest / Unittest</span>
+                            <span>Selenium</span>
+                            <span>Locust</span>
+                            <span>Git / GitHub Actions</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about-section">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Обо <span class="pravda-text">мне</span></h2>
-                        <p>Привет! Я PRAVDA_SEMPAI — разработчик, который не боится выходить за рамки одного стека. Моя страсть — создавать <strong>модульные, тестируемые и хорошо документированные</strong> системы.</p>
-                        <p>Мой путь начинался с игр на Godot, а сейчас я свободно перемещаюсь между мобильной разработкой (Kotlin), бэкендом (FastAPI), десктопными приложениями (Python/CustomTkinter) и автоматизацией тестирования. Каждый проект я рассматриваю как возможность изучить что-то новое и применить лучшие практики.</p>
-                        <div class="about-stats">
-                            <div class="stat">
-                                <span class="stat-number">8+</span>
-                                <span class="stat-label">публичных проектов</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">технологических стеков</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">100%</span>
-                                <span class="stat-label">кода с душой</span>
-                            </div>
+                <div class="about-inner">
+                    <div class="about-image">
+                        <div class="image-border"></div>
+                        <div class="image-wrapper">
+                            <img src="https://avatars.githubusercontent.com/u/74926737?s=400&u=26492810639f4f34e6f7bd649b4e834f3bb442cc&v=4" alt="PRAVDA_SEMPAI">
                         </div>
                     </div>
-                    <div class="about-image">
-                        <img src="https://avatars.githubusercontent.com/u/74926737?s=400&u=26492810639f4f34e6f7bd649b4e834f3bb442cc&v=4" alt="PRAVDA_SEMPAI" onerror="this.src='https://via.placeholder.com/400x400?text=PS'">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tech-stack" class="tech-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Технологический <span class="sempai-text">стек</span></h2>
-                    <p>Инструменты и технологии, которые я использую на ежедневной основе</p>
-                </div>
-                <div class="tech-grid">
-                    <div class="tech-category">
-                        <h3><i class="fas fa-globe"></i> Веб и Бэкенд</h3>
-                        <ul><li>Python / FastAPI</li><li>JavaScript (Vanilla)</li><li>HTML5 / CSS3 / Flex/Grid</li><li>SQLite / PostgreSQL</li><li>REST API / JSON</li></ul>
-                    </div>
-                    <div class="tech-category">
-                        <h3><i class="fab fa-android"></i> Мобильная разработка</h3>
-                        <ul><li>Kotlin</li><li>Android Jetpack (ViewModel, LiveData, Room)</li><li>Coroutines</li><li>Material Design</li></ul>
-                    </div>
-                    <div class="tech-category">
-                        <h3><i class="fas fa-gamepad"></i> Игры и Инструменты</h3>
-                        <ul><li>Godot Engine (GDScript)</li><li>CustomTkinter (Python GUI)</li><li>OpenGL / Shaders (базово)</li></ul>
-                    </div>
-                    <div class="tech-category">
-                        <h3><i class="fas fa-vial"></i> Тестирование и DevOps</h3>
-                        <ul><li>Pytest / Unittest</li><li>Locust (нагрузочное)</li><li>Selenium (Web-автоматизация)</li><li>Git / GitHub Actions</li></ul>
+                    <div class="about-content">
+                        <span class="section-badge">Кто я</span>
+                        <h2>Разработчик, который <span class="pravda-text">закрывает задачи</span></h2>
+                        <p>Меня зовут PRAVDA_SEMPAI. Начинал с игр на Godot, а сейчас работаю с вебом, мобильной разработкой и автоматизацией тестирования. Мне важно не просто написать код, а сделать систему, которую удобно поддерживать и развивать.</p>
+                        <p>Люблю модульную архитектуру, чистый код и тесты. Уверен, что хороший проект это когда код понятен даже спустя полгода.</p>
+                        <div class="about-tools">
+                            <div class="tool-badge">Python</div>
+                            <div class="tool-badge">Kotlin</div>
+                            <div class="tool-badge">FastAPI</div>
+                            <div class="tool-badge">Godot</div>
+                            <div class="tool-badge">Pytest</div>
+                            <div class="tool-badge">Android</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>© 2026 PRAVDA_SEMPAI. Все права защищены</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <img src="https://avatars.githubusercontent.com/u/74926737?s=30&v=4" alt="avatar" class="footer-avatar">
+                            <span>
+                                <span class="logo-pravda">PRAVDA_</span><span class="logo-sempai">SEMPAI</span>
+                            </span>
+                    </div>
+                    <p>Разрабатываю. Тестирую. Сдаю в срок.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/XpravdaX" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://vk.com/pravdasempai" target="_blank"><i class="fab fa-vk"></i></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 PRAVDA_SEMPAI. Все права защищены.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Кнопка "Наверх" -->
-    <button id="scroll-to-top" class="scroll-to-top" aria-label="Наверх">
+    <button id="scroll-to-top" class="scroll-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
