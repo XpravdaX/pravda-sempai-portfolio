@@ -26,6 +26,7 @@ body {
     line-height: 1.5;
     scroll-behavior: smooth;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* Фоновые эффекты */
@@ -65,11 +66,11 @@ body {
 .navbar {
     position: sticky;
     top: 0;
-    background: rgba(10, 12, 18, 0.85);
+    background: rgba(10, 12, 18, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(42, 47, 60, 0.5);
     padding: 1rem 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-container {
@@ -109,6 +110,7 @@ body {
     color: var(--sempai);
 }
 
+/* Навигация - десктоп */
 .nav-links {
     display: flex;
     gap: 2.5rem;
@@ -134,20 +136,27 @@ body {
     transition: width 0.2s ease;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--pravda);
 }
 
+/* Мобильное меню - бургер */
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     color: var(--text-secondary);
     transition: color 0.2s;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    line-height: 1;
 }
 
 .menu-toggle:hover {
@@ -227,6 +236,7 @@ body {
     display: flex;
     gap: 1rem;
     margin-bottom: 2.5rem;
+    flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
@@ -270,6 +280,7 @@ body {
     gap: 2rem;
     padding-top: 1rem;
     border-top: 1px solid var(--border);
+    flex-wrap: wrap;
 }
 
 .stat-item {
@@ -334,12 +345,16 @@ body {
 
 .window-content {
     padding: 1.5rem;
+    overflow-x: auto;
 }
 
 .window-content pre {
-    font-family: 'Monaco', monospace;
+    font-family: 'Monaco', 'Cascadia Code', 'Courier New', monospace;
     font-size: 0.85rem;
     color: var(--text-secondary);
+    white-space: pre;
+    word-wrap: normal;
+    text-align: left;
 }
 
 .code-keyword { color: var(--sempai); }
@@ -433,10 +448,32 @@ body {
     color: white;
 }
 
+/* Горизонтальная прокрутка для проектов на мобильных */
 .works-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.8rem;
+}
+
+/* Индикатор прокрутки */
+.scroll-hint {
+    display: none;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-hint i {
+    animation: scrollHint 1.5s infinite;
+}
+
+@keyframes scrollHint {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(5px); opacity: 1; }
 }
 
 .project-card {
@@ -551,6 +588,7 @@ body {
     background: linear-gradient(180deg, transparent 0%, rgba(17, 20, 28, 0.5) 100%);
 }
 
+/* Горизонтальная прокрутка для стека на мобильных */
 .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -620,7 +658,6 @@ body {
     align-items: center;
 }
 
-/* Рамка снаружи — остаётся прежнего размера */
 .image-border {
     position: absolute;
     width: 100%;
@@ -635,7 +672,7 @@ body {
 .image-wrapper {
     position: relative;
     width: 90%;
-    max-width: 315px; /* 320px * 0.9 = 288px */
+    max-width: 288px;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
     z-index: 2;
@@ -660,10 +697,6 @@ body {
 
 .about-image:hover .image-wrapper {
     transform: translate(12px, 12px);
-}
-
-.about-image:hover .image-wrapper img {
-    transform: translate(0, 0);
 }
 
 .about-content {
@@ -735,14 +768,6 @@ body {
     border: 1px solid var(--pravda);
 }
 
-.footer-info .logo-pravda {
-    color: var(--pravda);
-}
-
-.footer-info .logo-sempai {
-    color: var(--sempai);
-}
-
 .footer-info p {
     color: var(--text-secondary);
     font-size: 0.85rem;
@@ -804,27 +829,10 @@ body {
     transform: translateY(-5px);
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
+/* ============================================ */
+/* МОБИЛЬНАЯ АДАПТАЦИЯ (улучшенная) */
+/* ============================================ */
 
-.logo span {
-    display: inline-block;
-}
-
-.logo-pravda,
-.logo-sempai {
-    letter-spacing: normal;
-    margin: 0;
-    padding: 0;
-}
-
-/* Responsive */
 @media (max-width: 992px) {
     .hero-content {
         flex-direction: column;
@@ -847,58 +855,389 @@ body {
     .about-tools {
         justify-content: center;
     }
-    .image-wrapper {
-        max-width: 252px;
-    }
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    /* Основные отступы */
+    .container {
+        padding: 0 1rem;
     }
+    
+    /* Бургер-меню */
     .menu-toggle {
         display: block;
     }
-    .container {
-        padding: 0 1.2rem;
+    
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 12, 18, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--border);
+        z-index: 999;
+        text-align: center;
     }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        display: block;
+    }
+    
+    .nav-links a::after {
+        display: none;
+    }
+    
+    /* Hero секция */
+    .hero {
+        padding: 2rem 0 2rem;
+    }
+    
     .hero-text h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
     }
+    
+    .hero-text p {
+        font-size: 0.95rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 220px;
+        justify-content: center;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero-stats {
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    
+    .stat-number {
+        font-size: 1.3rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .stat-divider {
+        display: none;
+    }
+    
+    /* Виджет кода - ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНЫХ */
+    .hero-visual {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .code-window {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .window-content {
+        padding: 0.75rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .window-content pre {
+        font-family: 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+        font-size: 0.6rem;
+        line-height: 1.4;
+        white-space: pre;
+        word-wrap: normal;
+        text-align: left;
+        display: block;
+        width: fit-content;
+        min-width: 100%;
+    }
+    
+    .window-content code {
+        display: block;
+        text-align: left;
+        white-space: pre;
+    }
+    
+    .floating-icons {
+        display: none;
+    }
+    
+    /* Секции */
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-header p {
+        font-size: 0.85rem;
+    }
+    
+    .works-section,
+    .stack-section,
+    .about-section {
+        padding: 3rem 0;
+    }
+    
+    /* Фильтры - горизонтальная прокрутка */
+    .works-filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 0.6rem;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.8rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    .works-filters::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .works-filters::-webkit-scrollbar-track {
+        background: var(--border);
+        border-radius: 10px;
+    }
+    
+    .works-filters::-webkit-scrollbar-thumb {
+        background: var(--pravda);
+        border-radius: 10px;
+    }
+    
+    .filter-btn {
+        flex-shrink: 0;
+        padding: 0.4rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Горизонтальная прокрутка для проектов */
     .works-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
+    
+    .works-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .works-grid::-webkit-scrollbar-track {
+        background: var(--border);
+        border-radius: 10px;
+    }
+    
+    .works-grid::-webkit-scrollbar-thumb {
+        background: var(--pravda);
+        border-radius: 10px;
+    }
+    
+    .project-card {
+        flex: 0 0 85%;
+        scroll-snap-align: start;
+        min-width: 260px;
+        padding: 1.2rem;
+    }
+    
+    /* Индикатор прокрутки для проектов */
+    .scroll-hint {
+        display: flex;
+    }
+    
+    /* Горизонтальная прокрутка для стека */
     .stack-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
+    
+    .stack-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .stack-grid::-webkit-scrollbar-track {
+        background: var(--border);
+        border-radius: 10px;
+    }
+    
+    .stack-grid::-webkit-scrollbar-thumb {
+        background: var(--sempai);
+        border-radius: 10px;
+    }
+    
+    .stack-card {
+        flex: 0 0 80%;
+        scroll-snap-align: start;
+        min-width: 240px;
+        padding: 1.2rem;
+    }
+    
+    /* Секция обо мне */
+    .about-image {
+        width: 100%;
+    }
+    
+    .image-border,
+    .image-wrapper {
+        max-width: 220px;
+    }
+    
+    .about-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .about-content p {
+        font-size: 0.85rem;
+    }
+    
+    .tool-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    /* Футер */
     .footer-content {
         flex-direction: column;
         text-align: center;
     }
+    
+    .footer-info .logo {
+        justify-content: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    /* Кнопка наверх */
     .scroll-to-top {
         bottom: 20px;
         right: 20px;
-        width: 40px;
-        height: 40px;
-    }
-    .image-wrapper {
-        max-width: 216px; /* 240px * 0.9 = 216px */
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .works-filters {
-        gap: 0.5rem;
+    .container {
+        padding: 0 0.8rem;
     }
+    
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-tag {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.8rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        max-width: 200px;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+    
     .filter-btn {
-        padding: 0.4rem 1rem;
+        padding: 0.35rem 0.9rem;
+        font-size: 0.7rem;
+    }
+    
+    .project-card {
+        flex: 0 0 90%;
+        min-width: 240px;
+    }
+    
+    .project-card h3 {
+        font-size: 1rem;
+    }
+    
+    .project-description {
         font-size: 0.8rem;
     }
-    .hero-stats {
-        flex-wrap: wrap;
-        gap: 1rem;
+    
+    .project-tech span {
+        font-size: 0.6rem;
     }
-    .stat-divider {
-        display: none;
+    
+    .stack-card {
+        flex: 0 0 85%;
+        min-width: 220px;
+    }
+    
+    .stack-card h3 {
+        font-size: 1rem;
+    }
+    
+    .stack-list span {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+    }
+    
+    .image-border,
+    .image-wrapper {
+        max-width: 180px;
+    }
+    
+    .about-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .scroll-hint {
+        font-size: 0.65rem;
+    }
+    
+    .window-content pre {
+        font-size: 0.55rem;
+    }
+    
+    .window-content {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-text h1 {
+        font-size: 1.3rem;
+    }
+    
+    .project-card {
+        flex: 0 0 95%;
+        min-width: 220px;
+    }
+    
+    .stack-card {
+        flex: 0 0 90%;
+        min-width: 200px;
+    }
+    
+    .window-content pre {
+        font-size: 0.5rem;
     }
 }

@@ -59,7 +59,7 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number" data-count="12+">0</span>
+                        <span class="stat-number" data-count="12">0</span>
                         <span class="stat-label">завершенных проектов</span>
                     </div>
                     <div class="stat-divider"></div>
@@ -129,6 +129,11 @@ app = FastAPI()
                         <p>Загрузка проектов...</p>
                     </div>
                 </div>
+                <div class="scroll-hint" id="works-scroll-hint">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>листайте вправо</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
             </div>
         </section>
 
@@ -139,7 +144,7 @@ app = FastAPI()
                     <h2>Мой <span class="sempai-text">инструментарий</span></h2>
                     <p>То, с чем работаю каждый день</p>
                 </div>
-                <div class="stack-grid">
+                <div class="stack-grid" id="stack-grid">
                     <div class="stack-card">
                         <div class="stack-icon"><i class="fas fa-globe"></i></div>
                         <h3>Backend & Web</h3>
@@ -183,6 +188,11 @@ app = FastAPI()
                             <span>Docker</span>
                         </div>
                     </div>
+                </div>
+                <div class="scroll-hint" id="stack-scroll-hint">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>листайте вправо</span>
+                    <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
         </section>

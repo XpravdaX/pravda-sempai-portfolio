@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 navLinks.style.display = 'flex';
                 navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
+                navLinks.style.position = 'fixed';
                 navLinks.style.top = '70px';
                 navLinks.style.left = '0';
                 navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'var(--bg-dark)';
+                navLinks.style.backgroundColor = 'rgba(10, 12, 18, 0.98)';
+                navLinks.style.backdropFilter = 'blur(12px)';
                 navLinks.style.padding = '1.5rem';
                 navLinks.style.borderBottom = '1px solid var(--border)';
                 navLinks.style.zIndex = '1000';
@@ -33,6 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = [
         {
             id: 1,
+            name: "Portfolio website for a photographer",
+            description: "Сайт-портфолио для фотографа с галереей и адаптивным дизайном.",
+            tech: ["HTML", "CSS", "JavaScript"],
+            github: "https://github.com/XpravdaX/-portfolio-website-for-a-photographer",
+            category: "web",
+            icon: ""
+        },
+        {
+            id: 2,
             name: "PRAVDA_SEMPAI Pizza Shop",
             description: "Веб-приложение для пиццерии с корзиной, админ-панелью и API на FastAPI.",
             tech: ["Python", "FastAPI", "HTML/CSS/JS", "SQLite"],
@@ -41,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 2,
+            id: 3,
             name: "RU-OpticStore",
             description: "Магазин оптических прицелов с клиент-серверной архитектурой.",
             tech: ["Python", "CustomTkinter", "FastAPI", "SQLAlchemy"],
@@ -50,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 3,
+            id: 4,
             name: "RussianClicker v2.0",
             description: "Мобильный кликер на Kotlin с системой улучшений и Material Design.",
             tech: ["Kotlin", "Android Jetpack", "Room DB", "Coroutines"],
@@ -59,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 4,
+            id: 5,
             name: "BitrAdaptr CRM",
             description: "Модульная CRM-система с плагинами и темной темой.",
             tech: ["Python", "CustomTkinter", "Pandas", "SQLite"],
@@ -68,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 5,
+            id: 6,
             name: "SubwayRussian",
             description: "Симулятор московского метро на Godot Engine.",
             tech: ["Godot", "GDScript", "Blender"],
@@ -77,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 6,
+            id: 7,
             name: "Bot-Moderator-Test-1",
             description: "Telegram-бот для автоматической модерации групп.",
             tech: ["Python", "python-telegram-bot", "SQLite"],
@@ -86,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 7,
+            id: 8,
             name: "Testing Portfolio Template",
             description: "Шаблон портфолио для автоматизатора тестирования.",
             tech: ["Python", "Pytest", "Selenium", "Locust"],
@@ -95,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: ""
         },
         {
-            id: 8,
+            id: 9,
             name: "RouletteCSGO",
             description: "Симулятор открытия кейсов на Godot.",
             tech: ["Godot", "GDScript"],
@@ -148,6 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const filtered = projects.filter(p => p.category === filter);
                 renderProjects(filtered);
+            }
+            
+            // После смены фильтра скроллим к началу секции проектов
+            const worksSection = document.getElementById('works');
+            if (worksSection && window.innerWidth <= 768) {
+                setTimeout(() => {
+                    worksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
             }
         });
     });
@@ -251,4 +269,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Управление видимостью индикаторов прокрутки на мобильных
+    function handleScrollHints() {
+        const isMobile = window.innerWidth <= 768;
+        
+        const worksGrid = document.querySelector('.works-grid');
+        const worksHint = document.getElementById('works-scroll-hint');
+        const stackGrid = document.querySelector('.stack-grid');
+        const stackHint = document.getElementById('stack-scroll-hint');
+        
+        if (isMobile && worksGrid && worksHint) {
+            // Показываем индикатор только если есть переполнение
+            const hasOverflow = worksGrid.scrollWidth > worksGrid.clientWidth;
+            worksHint.style.display = hasOverflow ? 'flex' : 'none';
+            
+            // Скрываем индикатор после прокрутки
+            if (hasOverflow) {
+                let hideTimeout;
+                worksGrid.addEventListener('scroll', () => {
+                    worksHint.style.opacity = '0.5';
+                    clearTimeout(hideTimeout);
+                    hideTimeout = setTimeout(() => {
+                        worksHint.style.opacity = '1';
+                    }, 1000);
+                });
+            }
+        } else if (worksHint) {
+            worksHint.style.display = 'none';
+        }
+        
+        if (isMobile && stackGrid && stackHint) {
+            const hasOverflow = stackGrid.scrollWidth > stackGrid.clientWidth;
+            stackHint.style.display = hasOverflow ? 'flex' : 'none';
+        } else if (stackHint) {
+            stackHint.style.display = 'none';
+        }
+    }
+    
+    // Запускаем при загрузке и при изменении размера окна
+    handleScrollHints();
+    window.addEventListener('resize', handleScrollHints);
+    
+    // Дополнительно: авто-скрытие индикатора при скролле проектов
+    const worksGrid = document.querySelector('.works-grid');
+    if (worksGrid) {
+        worksGrid.addEventListener('scroll', () => {
+            const worksHint = document.getElementById('works-scroll-hint');
+            if (worksHint && window.innerWidth <= 768) {
+                worksHint.style.opacity = '0.3';
+                clearTimeout(window.worksHintTimeout);
+                window.worksHintTimeout = setTimeout(() => {
+                    worksHint.style.opacity = '1';
+                }, 800);
+            }
+        });
+    }
+    
+    const stackGrid = document.querySelector('.stack-grid');
+    if (stackGrid) {
+        stackGrid.addEventListener('scroll', () => {
+            const stackHint = document.getElementById('stack-scroll-hint');
+            if (stackHint && window.innerWidth <= 768) {
+                stackHint.style.opacity = '0.3';
+                clearTimeout(window.stackHintTimeout);
+                window.stackHintTimeout = setTimeout(() => {
+                    stackHint.style.opacity = '1';
+                }, 800);
+            }
+        });
+    }
 });
